@@ -7,19 +7,16 @@
 
 int main(void)
 {
-	int c, nb;
+	int c, lastc;
 
-	nb = 0;
+	lastc = EOF; /* lastc can be initialized as any non-blank character */
 	while ((c = getchar()) != EOF) {
-		if (c == ' ')
-			++nb;
-		else {
-			if (nb != 0) {
-				nb = 0;
-				putchar(' ');
-			}
+		if (c != ' ')
 			putchar(c);
-		}
+		if (c == ' ')
+			if (lastc != ' ')
+				putchar(c);
+		lastc = c;
 	}
 	return 0;
 }
